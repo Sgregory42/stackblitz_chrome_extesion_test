@@ -1,0 +1,42 @@
+{
+  "manifest_version": 3,
+  "name": "YouTube Notes",
+  "version": "1.0",
+  "description": "Take notes on YouTube videos with timestamps and screenshots",
+  "permissions": [
+    "activeTab",
+    "storage",
+    "scripting"
+  ],
+  "host_permissions": [
+    "https://www.youtube.com/*"
+  ],
+  "background": {
+    "service_worker": "src/background.ts"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.youtube.com/*"],
+      "js": ["src/content.tsx"]
+    }
+  ],
+  "action": {
+    "default_popup": "index.html"
+  },
+  "commands": {
+    "open-note-input": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+A",
+        "mac": "Command+Shift+A"
+      },
+      "description": "Open note input"
+    },
+    "open-note-input-with-screenshot": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+S",
+        "mac": "Command+Shift+S"
+      },
+      "description": "Open note input with screenshot"
+    }
+  }
+}
